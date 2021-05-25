@@ -6,5 +6,12 @@
 */
 {
   "files": [],
-  "references": []
+  "references": [
+    {
+      "path": "./projects/al-calendar/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/al-calendar/tsconfig.spec.json"
+    }
+]
 }
