@@ -1,4 +1,16 @@
 # AlCalendarService
+This project is build to quickly generate dates based on some user demands.
+
+## Example
+CalendarService.getNow() will return current date.
+CalendarService.getOffestDate(1, CalendarService.getNow())  will return date offested from the starting date. Current example will return Tomorrow as offested date.
+
+## Future plans
+
+DateFormatService will generate mostly used date formats for users.
+DateFormatService.formatMMDDYYYY(Date(2020,0,01)) will format it as 01/01/2020
+DateFormatSerive.formatMM_DD_YYYY_Time(Date(2020,0,01,0,0,0,0)) will format it as  01_01_2020_0000
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.7.
 
