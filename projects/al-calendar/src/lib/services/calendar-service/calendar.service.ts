@@ -59,4 +59,10 @@ export class CalendarService {
     return new Date(year, 11, 31);
   }
 
+
+  stripUTC(date: any): string {
+    return `${date}`.replace('Z', '');
+  }
+  // 2016-01-01T00:00:00 2016-01-01T00:00:00Z   Remove Z when user wants to
+
 }
