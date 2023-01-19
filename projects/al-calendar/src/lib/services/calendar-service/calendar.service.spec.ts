@@ -67,14 +67,14 @@ describe('CalendarService', () => {
   });
 
   it('should get Tomorrow as date', () => {
-    const possibleTomorrow = service.getOffestDate(1);
+    const possibleTomorrow = service.getOffsetDate(1);
     const expectedTomorrow = new Date();
     expectedTomorrow.setDate(new Date().getDate() + 1);
     expect(possibleTomorrow.toDateString()).toEqual(expectedTomorrow.toDateString());
   })
 
   it('should get Previouse day as date', () => {
-    const possibleTomorrow = service.getOffestDate(-1);
+    const possibleTomorrow = service.getOffsetDate(-1);
     const expectedTomorrow = new Date();
     expectedTomorrow.setDate(new Date().getDate() - 1);
     expect(possibleTomorrow.toDateString()).toEqual(expectedTomorrow.toDateString());
