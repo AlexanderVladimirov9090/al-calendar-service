@@ -7,14 +7,14 @@ import { Injectable } from '@angular/core';
 export class DateFormatService {
   private prefixStart = '01/01/';
   private prefixEnd = '12/31/';
-  private dateSeperator = '-';
+  private dateSeparator = '-';
   public DATE_FORMATS = {
-    ddMMYYYY: `dd${this.dateSeperator}MM${this.dateSeperator}yyyy`,
-    MMddYYYY: `MM${this.dateSeperator}dd${this.dateSeperator}yyyy`,
-    YYYYddMM: `yyyy${this.dateSeperator}dd${this.dateSeperator}MM`,
-    yyyyMMdd: `yyyy${this.dateSeperator}MM${this.dateSeperator}dd`,
-    yyyyMM: `yyyy${this.dateSeperator}MM`,
-    MMyyyy: `MM${this.dateSeperator}yyyy`
+    ddMMYYYY: `dd${this.dateSeparator}MM${this.dateSeparator}yyyy`,
+    MMddYYYY: `MM${this.dateSeparator}dd${this.dateSeparator}yyyy`,
+    YYYYddMM: `yyyy${this.dateSeparator}dd${this.dateSeparator}MM`,
+    yyyyMMdd: `yyyy${this.dateSeparator}MM${this.dateSeparator}dd`,
+    yyyyMM: `yyyy${this.dateSeparator}MM`,
+    MMyyyy: `MM${this.dateSeparator}yyyy`
   };
 
   public TIME_FORMAT = {
@@ -23,20 +23,20 @@ export class DateFormatService {
 
   constructor() { }
 
-  setDateFormat(dateSeperator: string) {
-    this.dateSeperator = dateSeperator || '-';
+  setDateFormat(dateSeparator: string) {
+    this.dateSeparator = dateSeparator || '-';
     this.DATE_FORMATS = {
-      ddMMYYYY: `dd${this.dateSeperator}MM${this.dateSeperator}yyyy`,
-      MMddYYYY: `MM${this.dateSeperator}dd${this.dateSeperator}yyyy`,
-      YYYYddMM: `yyyy${this.dateSeperator}dd${this.dateSeperator}MM`,
-      yyyyMMdd: `yyyy${this.dateSeperator}MM${this.dateSeperator}dd`,
-      yyyyMM: `yyyy${this.dateSeperator}MM`,
-      MMyyyy: `MM${this.dateSeperator}yyyy`
+      ddMMYYYY: `dd${this.dateSeparator}MM${this.dateSeparator}yyyy`,
+      MMddYYYY: `MM${this.dateSeparator}dd${this.dateSeparator}yyyy`,
+      YYYYddMM: `yyyy${this.dateSeparator}dd${this.dateSeparator}MM`,
+      yyyyMMdd: `yyyy${this.dateSeparator}MM${this.dateSeparator}dd`,
+      yyyyMM: `yyyy${this.dateSeparator}MM`,
+      MMyyyy: `MM${this.dateSeparator}yyyy`
     }
   }
 
-  formatedDateString(date: Date, stringFomrat: string = this.DATE_FORMATS.ddMMYYYY, locale: string = 'en-US'): string {
-    return formatDate(date, stringFomrat, locale);
+  formattedDateString(date: Date, stringFormat: string = this.DATE_FORMATS.ddMMYYYY, locale: string = 'en-US'): string {
+    return formatDate(date, stringFormat, locale);
   }
 
   formatTime(date: Date) {

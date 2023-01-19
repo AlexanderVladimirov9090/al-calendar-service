@@ -16,40 +16,40 @@ describe('ValidationService', () => {
   });
 
   it('should validate date expresion from string', () => {
-    expect(service.validateDateExpresion(['December 17, 1995 03:24:00'])).toBeTrue();
+    expect(service.validateDateExpression(['December 17, 1995 03:24:00'])).toBeTrue();
   })
 
   it('should throw invalid date expression when empty array is passed', () => {
-    expect(function () { service.validateDateExpresion([]); }).toThrow(new InvalidDateExpressionError("Undefined value of expression!"));
+    expect(function () { service.validateDateExpression([]); }).toThrow(new InvalidDateExpressionError("Undefined value of expression!"));
   })
 
 
   it('should throw invalid date expression when empty string is passed', () => {
-    expect(function () { service.validateDateExpresion(['']); }).toThrow(new InvalidDateExpressionError("Undefined value of expression!"));
+    expect(function () { service.validateDateExpression(['']); }).toThrow(new InvalidDateExpressionError("Undefined value of expression!"));
   })
 
   it('should throw invalid date if MONTH is undefined', () => {
-    expect(function () { service.validateDateExpresion([2000]); }).toThrow(new InvalidDateExpressionError("Undefined value of MONTH not allowed!"));
+    expect(function () { service.validateDateExpression([2000]); }).toThrow(new InvalidDateExpressionError("Undefined value of MONTH not allowed!"));
   })
 
   it('should throw invalid date if MONTH is negative', () => {
-    expect(function () { service.validateDateExpresion([2000, -1]); }).toThrow(new InvalidDateExpressionError("No Negative MONTH is allowed!"));
+    expect(function () { service.validateDateExpression([2000, -1]); }).toThrow(new InvalidDateExpressionError("No Negative MONTH is allowed!"));
   })
 
   it('should throw invalid date if MONTH exceeded last month', () => {
-    expect(function () { service.validateDateExpresion([2000, 12]); }).toThrow(new InvalidDateExpressionError("Maximum Month number exceeded! MONTH <= 11"));
+    expect(function () { service.validateDateExpression([2000, 12]); }).toThrow(new InvalidDateExpressionError("Maximum Month number exceeded! MONTH <= 11"));
   })
 
   it('should throw invalid date if DAY is udenfined', () => {
-    expect(function () { service.validateDateExpresion([2000, 11]); }).toThrow(new InvalidDateExpressionError("Undefined value of DAY not allowed!"));
+    expect(function () { service.validateDateExpression([2000, 11]); }).toThrow(new InvalidDateExpressionError("Undefined value of DAY not allowed!"));
   })
 
   it('should throw invalid date if DAY is negative', () => {
-    expect(function () { service.validateDateExpresion([2000, 11, -1]); }).toThrow(new InvalidDateExpressionError("DAY is less than 1 now allowed."));
+    expect(function () { service.validateDateExpression([2000, 11, -1]); }).toThrow(new InvalidDateExpressionError("DAY is less than 1 now allowed."));
   })
 
   it('should throw invalid date if DAY exceeded 31', () => {
-    expect(function () { service.validateDateExpresion([2000, 11, 33]); }).toThrow(new InvalidDateExpressionError("Maximum Day number exceeded! DAY <= 31"));
+    expect(function () { service.validateDateExpression([2000, 11, 33]); }).toThrow(new InvalidDateExpressionError("Maximum Day number exceeded! DAY <= 31"));
   })
 
   it('should validate PossibleDate', () => {

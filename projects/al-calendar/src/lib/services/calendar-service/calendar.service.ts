@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class CalendarService {
 
-  constructor(private validation: ValidationService) { }
+  constructor(private validation: ValidationService = new ValidationService()) { }
 
   /**
    * It generates date from expresion.
@@ -14,7 +14,7 @@ export class CalendarService {
    * @param exprestion that will generate date.
    */
   generateDate(...exprestion: any[]): Date {
-    this.validation.validateDateExpresion(exprestion);
+    this.validation.validateDateExpression(exprestion);
     return this.validation.isExpressionString(exprestion[0]) ?
       this.validation.validatePossibleDate(new Date(exprestion[0]))
       :
@@ -30,15 +30,15 @@ export class CalendarService {
   }
 
   /**
-   * Calculates offested from given date using offest
-   * @param offest that will calculated how many days to offest from given date.
+   * Calculates offset from given date using offset
+   * @param offset that will calculated how many days to offset from given date.
    * @param startingDate if no given date is supplied use the current date.
    * @returns
    */
-  getOffestDate(offest: number = 0, startingDate: Date = new Date()): Date {
-    const offestDate = new Date();
-    offestDate.setDate(startingDate.getDate() + offest);
-    return offestDate;
+  getOffsetDate(offset: number = 0, startingDate: Date = new Date()): Date {
+    const offsetDate = new Date();
+    offsetDate.setDate(startingDate.getDate() + offset);
+    return offsetDate;
   }
 
   /**

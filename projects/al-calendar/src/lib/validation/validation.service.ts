@@ -23,7 +23,7 @@ export class ValidationService {
     this.possibleArgumentTypes.set(undefined, false);
   }
 
-  validateDateExpresion(args: string[] | number[]): boolean {
+  validateDateExpression(args: string[] | number[]): boolean {
     if (!args) {
       throw new InvalidDateExpressionError("Undefined value of expression!");
     }
