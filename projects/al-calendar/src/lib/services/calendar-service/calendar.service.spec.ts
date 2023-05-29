@@ -80,4 +80,10 @@ describe('CalendarService', () => {
     expect(possibleTomorrow.toDateString()).toEqual(expectedTomorrow.toDateString());
   })
 
+  it('should get Previouse day as date', () => {
+    const possibleTomorrow = service.getOffsetDate(-1, new Date(2023,9,16));
+    const expectedTomorrow = new Date(2023,9,15);
+    expect(possibleTomorrow.toDateString()).toEqual(expectedTomorrow.toDateString());
+  })
+
 });

@@ -1,5 +1,5 @@
-import { ValidationService } from './../../validation/validation.service';
 import { Injectable } from '@angular/core';
+import { ValidationService } from './../../validation/validation.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class CalendarService {
     return this.validation.isExpressionString(exprestion[0]) ?
       this.validation.validatePossibleDate(new Date(exprestion[0]))
       :
-      this.validation.validatePossibleDate(new Date(exprestion[0], exprestion[1], exprestion[2], exprestion[3]||0, exprestion[4]||0, exprestion[5]||0,exprestion[6]||0));
+      this.validation.validatePossibleDate(new Date(exprestion[0], exprestion[1], exprestion[2], exprestion[3] || 0, exprestion[4] || 0, exprestion[5] || 0, exprestion[6] || 0));
   }
 
   /**
@@ -36,9 +36,7 @@ export class CalendarService {
    * @returns
    */
   getOffsetDate(offset: number = 0, startingDate: Date = new Date()): Date {
-    const offsetDate = new Date();
-    offsetDate.setDate(startingDate.getDate() + offset);
-    return offsetDate;
+    return new Date(startingDate.getFullYear(), startingDate.getMonth(), startingDate.getDate() + offset);
   }
 
   /**
