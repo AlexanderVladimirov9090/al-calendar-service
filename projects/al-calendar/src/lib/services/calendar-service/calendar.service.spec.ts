@@ -27,32 +27,32 @@ describe('CalendarService', () => {
   });
 
   it('should create date from number year,month,day format', () => {
-    const possibleDate = service.generateDate(2020,1,11);
-    const expectedDate = new Date(2020,1,11,0,0,0,0);
+    const possibleDate = service.generateDate(2020, 1, 11);
+    const expectedDate = new Date(2020, 1, 11, 0, 0, 0, 0);
     expect(possibleDate.toDateString()).toEqual(expectedDate.toDateString());
   });
 
   it('should create date from number year,month,day,hours format', () => {
-    const possibleDate = service.generateDate(2020,1,11,12);
-    const expectedDate = new Date(2020,1,11,12,0,0,0);
+    const possibleDate = service.generateDate(2020, 1, 11, 12);
+    const expectedDate = new Date(2020, 1, 11, 12, 0, 0, 0);
     expect(possibleDate).toEqual(expectedDate);
   });
 
   it('should create date from number year,month,day,hours,minutes format', () => {
-    const possibleDate = service.generateDate(2020,1,11,12,60);
-    const expectedDate = new Date(2020,1,11,12,60,0,0);
+    const possibleDate = service.generateDate(2020, 1, 11, 12, 60);
+    const expectedDate = new Date(2020, 1, 11, 12, 60, 0, 0);
     expect(possibleDate).toEqual(expectedDate);
   });
 
   it('should create date from number year,month,day,hours,minutes,seconds format', () => {
-    const possibleDate = service.generateDate(2020,1,11,12,60,60);
-    const expectedDate = new Date(2020,1,11,12,60,60,0);
+    const possibleDate = service.generateDate(2020, 1, 11, 12, 60, 60);
+    const expectedDate = new Date(2020, 1, 11, 12, 60, 60, 0);
     expect(possibleDate).toEqual(expectedDate);
   });
 
   it('should create date from number year,month,day,hours,minutes,seconds,milliseconds format', () => {
-    const possibleDate = service.generateDate(2020,1,11,12,60,60,1);
-    const expectedDate = new Date(2020,1,11,12,60,60,1);
+    const possibleDate = service.generateDate(2020, 1, 11, 12, 60, 60, 1);
+    const expectedDate = new Date(2020, 1, 11, 12, 60, 60, 1);
     expect(possibleDate).toEqual(expectedDate);
   });
 
@@ -71,19 +71,37 @@ describe('CalendarService', () => {
     const expectedTomorrow = new Date();
     expectedTomorrow.setDate(new Date().getDate() + 1);
     expect(possibleTomorrow.toDateString()).toEqual(expectedTomorrow.toDateString());
-  })
+  });
 
   it('should get Previouse day as date', () => {
     const possibleTomorrow = service.getOffsetDate(-1);
     const expectedTomorrow = new Date();
     expectedTomorrow.setDate(new Date().getDate() - 1);
     expect(possibleTomorrow.toDateString()).toEqual(expectedTomorrow.toDateString());
-  })
+  });
 
   it('should get Previouse day as date', () => {
-    const possibleTomorrow = service.getOffsetDate(-1, new Date(2023,9,16));
-    const expectedTomorrow = new Date(2023,9,15);
+    const possibleTomorrow = service.getOffsetDate(-1, new Date(2023, 9, 16));
+    const expectedTomorrow = new Date(2023, 9, 15);
     expect(possibleTomorrow.toDateString()).toEqual(expectedTomorrow.toDateString());
-  })
+  });
 
+
+  it('should get the first date of the year', () => {
+    const possibleFirstDate = service.getFirstDateOfYear(2022);
+    const expectedFirstDate = new Date(2022, 0, 1);
+    expect(possibleFirstDate.toDateString()).toEqual(expectedFirstDate.toDateString());
+  });
+
+  it('should get the last date of the year', () => {
+    const possibleLastDate = service.getLastDateOfYear(2022);
+    const expectedLastDate = new Date(2022, 11, 31);
+    expect(possibleLastDate.toDateString()).toEqual(expectedLastDate.toDateString());
+  });
+
+  it('should strip UTC from the date', () => {
+    const possibleStrippedDate = service.stripUTC('2016-01-01T00:00:00Z');
+    const expectedStrippedDate = '2016-01-01T00:00:00';
+    expect(possibleStrippedDate).toEqual(expectedStrippedDate);
+  });
 });
