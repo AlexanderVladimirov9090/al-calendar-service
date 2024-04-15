@@ -9,16 +9,24 @@ export class CalendarService {
   constructor(private validation: ValidationService = new ValidationService()) { }
 
   /**
-   * It generates date from expresion.
-   * When it is invalid date throws Error with message provided messeges.
-   * @param exprestion that will generate date.
+   * It generates date from expression.
+   * When it is invalid date throws Error with message provided messages.
+   * @param expression that will generate date.
    */
-  generateDate(...exprestion: any[]): Date {
-    this.validation.validateDateExpression(exprestion);
-    return this.validation.isExpressionString(exprestion[0]) ?
-      this.validation.validatePossibleDate(new Date(exprestion[0]))
-      :
-      this.validation.validatePossibleDate(new Date(exprestion[0], exprestion[1], exprestion[2], exprestion[3] || 0, exprestion[4] || 0, exprestion[5] || 0, exprestion[6] || 0));
+  generateDate(...expression: any[]): Date {
+    this.validation.validateDateExpression(expression);
+    if (this.validation.isExpressionString(expression[0])) {
+      return this.validation.validatePossibleDate(new Date(expression[0]));
+    }
+    return this.validation.validatePossibleDate(
+      new Date(
+        expression[0],
+        expression[1],
+        expression[2],
+        expression[3] || 0,
+        expression[4] || 0,
+        expression[5] || 0,
+        expression[6] || 0));
   }
 
   /**
@@ -59,8 +67,10 @@ export class CalendarService {
 
 
   stripUTC(date: any): string {
+    if (date instanceof Date) {
+      return date.toISOString().replace('Z', '');
+    }
     return `${date}`.replace('Z', '');
   }
   // 2016-01-01T00:00:00 2016-01-01T00:00:00Z   Remove Z when user wants to
-
 }

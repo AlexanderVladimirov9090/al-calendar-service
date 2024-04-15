@@ -4,7 +4,6 @@ import { CalendarService } from '../calendar-service/calendar.service';
 import { ValidationService } from './../../validation/validation.service';
 import { DateFormatService } from './date-format.service';
 
-
 describe('DateFormatService', () => {
   let service: DateFormatService;
   let calendarService = new CalendarService(new ValidationService());
@@ -25,17 +24,16 @@ describe('DateFormatService', () => {
   });
 
   it('should format MM/DD/YYYY given date', () => {
-    service.setDateFormat('/')
+    service.setDateFormat('/');
     const possibleDateByMMDDYY = service.formattedDateString(calendarService.generateDate('2020-02-04T00:00:00'), service.DATE_FORMATS.MMddYYYY);
     const expectedDate = new Date('2020-02-04T00:00:00');
     expect(possibleDateByMMDDYY).toEqual(formatDate(expectedDate, 'MM/dd/yyyy', 'en-US'));
   });
 
   it('should format MM&DD&YYYY given date', () => {
-    service.setDateFormat('&')
+    service.setDateFormat('&');
     const possibleDateByMMDDYY = service.formattedDateString(calendarService.generateDate('2020-02-04T00:00:00'), service.DATE_FORMATS.MMddYYYY);
     const expectedDate = new Date('2020-02-04T00:00:00');
     expect(possibleDateByMMDDYY).toEqual(formatDate(expectedDate, 'MM&dd&yyyy', 'en-US'));
   });
-
 });

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { EmptyDateError } from '../errors/empty-date-error';
 import InvalidDateExpressionError from '../errors/invalid-expression-error';
 
 @Injectable({
@@ -42,11 +41,11 @@ export class ValidationService {
 
     // Check if expression is of string.
     if (typeof expression == this.STRING_TYPE) {
-      //NOTES: We could make REGEX to test if the string is formated.
+      //NOTES: We could make REGEX to test if the string is formatted.
       return true;
     }
 
-    let expression2 = args[1];
+    let expression2 = args[1] as any;
     if (!expression2) {
       throw new InvalidDateExpressionError('Undefined value of MONTH not allowed!');
     }
@@ -61,7 +60,7 @@ export class ValidationService {
       }
     }
 
-    let expression3 = args[2];
+    let expression3 = args[2] as any;
 
     if (!expression3) {
       throw new InvalidDateExpressionError("Undefined value of DAY not allowed!");
@@ -69,7 +68,7 @@ export class ValidationService {
 
     if (typeof expression3 == this.NUMBER_TYPE) {
       if (expression3 < 1) {
-        throw new InvalidDateExpressionError("DAY is less than 1 now allowed.");
+        throw new InvalidDateExpressionError("DAY is less than 1 not allowed.");
       }
 
       if (expression3 > 31) {
@@ -79,21 +78,16 @@ export class ValidationService {
     return true;
   }
 
-  validatePossibleDate(possibeDate: Date): Date {
-    if (Object.prototype.toString.call(possibeDate) === "[object Date]")
-      if (isNaN(possibeDate.valueOf())) {
+  validatePossibleDate(possibleDate: Date): Date {
+    if (Object.prototype.toString.call(possibleDate) === "[object Date]")
+      if (isNaN(possibleDate.valueOf())) {
         throw new InvalidDateExpressionError();
       } else {
-        return possibeDate;
+        return possibleDate;
       }
   }
 
-  isExpressionString(expresion): boolean {
-    if (typeof expresion == this.STRING_TYPE) {
-      return true;
-    } else {
-      return false;
-    }
+  isExpressionString(expression): boolean {
+    return typeof expression === this.STRING_TYPE;
   }
-
 }
